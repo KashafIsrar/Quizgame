@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Results</title>
+</head>
+<body class="results">
+    <div class="container">
+        <h2>Outcome</h2>
+        <p>{{ outcome['message'] }}</p>
+        <a href="/game/{{ outcome['next_question'] }}" class="btn">Next Scenario</a>
+    </div>
+</body>
+</html>
+
