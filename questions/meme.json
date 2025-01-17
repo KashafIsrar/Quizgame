@@ -1,22 +1,47 @@
 [
     {
-        "question:": "Uparr bhi barrf barri hori hai neechay bhi barrf barri hori hai refers to wich location?",
-        "option": [
-            "Murree",
-            "Balakot",
-            "Naran",
-            "Hunza"
-        ],
-        "correct_answer": "Murree"
+        "id": 1,
+        "text": "How do you react when you get unexpected marks in an exam?",
+        "options": {
+            "Haye Mazay!": "Your'e just a chill guy.",
+            "Disappointed, but not surprised.": "Expectes an easy day, failed.",
+            "Aray bhai, paper was out of syllabus!": "Main character energy? Always ON."
+        }
     },
     {
-        "question:": "Uparr bhi barrf barri hori hai neechay bhi barrf barri hori hai refers to wich location?",
-        "option": [
-            "Murree",
-            "Balakot",
-            "Naran",
-            "Hunza"
-        ],
-        "correct_answer": "Murree"
+        "id": 2,
+        "text": "What’s your excuse when the professor catches you late to class?",
+        "options": {
+            "Bus traffic mein phas gaya tha.": "Expectes an easy day, failed.",
+            "Pretends to be out of breath: Sir, daur ke aya hoon!": "Main character energy? Always ON.",
+            "Chill, sir. Relax karen!": "Your'e just a chill guy."
+        }
+    },
+    {
+        "id": 3,
+        "text": "How do you feel when your friends cancel a group hangout last minute?",
+        "options": {
+            "Yeh sab planning karni hi nahi chahiye thi!": "Expectes an easy day, failed.",
+            "Mujhe kyun nahi bataya pehle?!": "Main character energy? Always ON.",
+            "Mai toh VIP hoon. Mujhe koi farq nahi padta.": "Your'e just a chill guy."
+        }
+    },
+    {
+        "id": 4,
+        "text": "What’s your strategy for group projects?",
+        "options": {
+            "I’ll do everything because no one else will.": "Expectes an easy day, failed.",
+            "Aray bhai, koi aur kar lega na?": "Your'e just a chill guy.",
+            "Mein kyun karoon? Mein toh star student hoon.": "Main character energy? Always ON."
+        }
+    },
+    {
+        "id": 5,
+        "text": "What’s your reaction when a professor extends the deadline?",
+        "options": {
+            "Chalo, ab maze se last minute kaam kareinge.": "Your'e just a chill guy.",
+            "Yaar, main tou already submit kar chuka tha!": "Expectes an easy day, failed.",
+            "Assignment? Kon si assignment?": "Main character energy? Always ON."
+        }
     }
 ]
