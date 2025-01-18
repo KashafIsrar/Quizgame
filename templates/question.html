@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="quiz-container">
+        <header>
+            <h1>Personality Quiz</h1>
+        </header>
+        <main>
+            <form action="{{ url_for('question', qid=qid) }}" method="POST">
+                <div id="question-box">
+                    <h2 id="question-text">{{ question.text }}</h2>
+                    <div class="options">
+                        {% for option in question.options %}
+                            <label>
+                                <input type="radio" name="answer" value="{{ option }}" required>
+                                {{ option }}
+                            </label><br>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" id="next-button">Next</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>
+
