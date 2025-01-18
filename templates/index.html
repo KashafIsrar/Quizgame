@@ -1,17 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apocalypse Quiz</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to the Personality Quiz</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .description {
+      font-size: 1.2em;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .categories {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .category-box {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      width: 200px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+      cursor: pointer;
+      text-align: center;
+    }
+    .category-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .category-box input {
+      display: none; /* Hide the radio input */
+    }
+    .category-box .icon {
+      font-size: 3em;
+      color: #4CAF50;
+      margin-bottom: 10px;
+    }
+    .category-box .category-title {
+      font-size: 1.5em;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .category-box .category-description {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .category-box input:checked + .category-title,
+    .category-box input:checked + .category-description,
+    .category-box input:checked + .icon {
+      color: #fff;
+    }
+    .category-box input:checked + * {
+      background-color: #4CAF50;
+      border-color: #4CAF50;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+      transform: translateY(-5px);
+    }
+    .start-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .start-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-    <div class="container" id="home">
-        <h1>Welcome to the Apocalypse Quiz!</h1>
-        <p>Test your wits and survival skills with our scenario-based quiz!</p>
-        <a href="{{ url_for('instructions') }}" class="button">Start the Game</a>
-    </div>
+  <div class="container">
+    <h1>Welcome to the Personality Quiz</h1>
+    <p class="description">
+      Discover your personality trait by answering a series of fun and engaging questions. 
+      Pick a category below to get started!
+    </p>
+
+    <form method="POST" action="/start-quiz">
+      <div class="categories">
+        <!-- General Knowledge -->
+        <label class="category-box">
+          <input type="radio" name="category" value="general" required>
+          <div class="icon">📘</div>
+          <div class="category-title">General Knowledge</div>
+          <div class="category-description">Test your trivia skills with questions from history, science, and pop culture!</div>
+        </label>
+
+        <!-- Meme Quiz -->
+        <label class="category-box">
+          <input type="radio" name="category" value="meme" required>
+          <div class="icon">😂</div>
+          <div class="category-title">Meme Quiz</div>
+          <div class="category-description">Laugh out loud with a quiz dedicated to internet humor and desi memes.</div>
+        </label>
+
+        <!-- Fun Trivia -->
+        <label class="category-box">
+          <input type="radio" name="category" value="fun" required>
+          <div class="icon">🎉</div>
+          <div class="category-title">Fun Trivia</div>
+          <div class="category-description">Lighthearted and competitive questions to challenge your wits!</div>
+        </label>
+      </div>
+
+      <button type="submit" class="start-btn">Start Quiz</button>
+    </form>
+  </div>
 </body>
 </html>
-

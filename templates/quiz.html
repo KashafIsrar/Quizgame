@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script>
+    let currentQuestion = 0;
+    const questions = {{ questions|tojson }};
+    const answers = {};
+    const TIMER_DURATION = 15;
+
+    function renderQuestion() {
+      if (currentQuestion >= questions.length) {
+        submitQuiz();
+        return;
+      }
+      const question = questions[currentQuestion];
+      document.getElementById("question-text").textContent = question.text;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      for (const [option, personality] of Object.entries(question.options)) {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.onclick = () => {
+          answers[question.id] = personality;
+          currentQuestion++;
+          renderQuestion();
+        };
+        optionsDiv.appendChild(button);
+      }
+
+      startTimer();
+    }
+
+    let timer;
+    function startTimer() {
+      clearInterval(timer);
+      let timeLeft = TIMER_DURATION;
+      const timerElement = document.getElementById("timer");
+      timerElement.textContent = `Time Left: ${timeLeft}s`;
+      timer = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = `Time Left: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          currentQuestion++;
+          renderQuestion();
+        }
+      }, 1000);
+    }
+
+    function submitQuiz() {
+      fetch("/submit-quiz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answers }),
+      })
+        .then((response) => response.text())
+        .then((html) => {
+          document.body.innerHTML = html;
+        });
+    }
+
+    window.onload = renderQuestion;
+  </script>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="question">
+      <h2 id="question-text"></h2>
+      <div id="options"></div>
+    </div>
+    <div id="timer"></div>
+  </div>
+</body>
+</html>
