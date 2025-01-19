@@ -1,51 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to the Personality Quiz</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-  <style>
-    
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Categories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to the Personality Quiz</h1>
-    <p class="description">
-      Discover your personality trait by answering a series of fun and engaging questions. 
-      Pick a category below to get started!
-    </p>
+    <header>
+        <h1>Welcome to the Quiz App!</h1>
+        <p class="description">A fun and interactive quiz app with multiple categories to test your knowledge. Choose your preferred quiz and get started!</p>
+    </header>
+    
+    <div class="container">
+        <h2>Select a quiz category below:</h2>
+        <div class="quiz-categories">
+            <a href="{{ url_for('meme_quiz') }}" class="quiz-box">
+                <div class="quiz-icon-container">
+                    <span class="quiz-icon">😂</span>
+                    <h3>Meme Quiz</h3>
+                </div>
+                <p class="category-description">Test your meme knowledge and have fun!</p>
+            </a>
+            <a href="{{ url_for('general_quiz') }}" class="quiz-box">
+                <div class="quiz-icon-container">
+                    <span class="quiz-icon">🧠</span>
+                    <h3>General Quiz</h3>
+                </div>
+                <p class="category-description">Answer a range of questions from general knowledge!</p>
+            </a>
+            <a href="{{ url_for('apocalypse_quiz') }}" class="quiz-box">
+                <div class="quiz-icon-container">
+                    <span class="quiz-icon">☠️</span>
+                    <h3>Apocalypse Quiz</h3>
+                </div>
+                <p class="category-description">Are you ready for the apocalypse? Test your survival skills!</p>
+            </a>
+        </div>
+    </div>
 
-    <form method="POST" action="/start-quiz">
-      <div class="categories">
-        <!-- General Knowledge -->
-        <label class="category-box">
-          <input type="radio" name="category" value="general" required>
-          <div class="icon">📘</div>
-          <div class="category-title">General Knowledge</div>
-          <div class="category-description">Test your trivia skills with questions from history, science, and pop culture!</div>
-        </label>
-
-        <!-- Meme Quiz -->
-        <label class="category-box">
-          <input type="radio" name="category" value="meme" required>
-          <div class="icon">😂</div>
-          <div class="category-title">Meme Quiz</div>
-          <div class="category-description">Laugh out loud with a quiz dedicated to internet humor and desi memes.</div>
-        </label>
-
-        <!-- Fun Trivia -->
-        <label class="category-box">
-          <input type="radio" name="category" value="fun" required>
-          <div class="icon">🎉</div>
-          <div class="category-title">Fun Trivia</div>
-          <div class="category-description">Lighthearted and competitive questions to challenge your wits!</div>
-        </label>
-      </div>
-
-      <button type="submit" class="start-btn">Start Quiz</button>
-    </form>
-  </div>
+    <footer>
+        <p>Quiz App &copy; 2025</p>
+    </footer>
 </body>
 </html>

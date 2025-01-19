@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apocalypse Quiz Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 20px auto;
+        }
+        .result {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+        }
+        ul {
+            text-align: left;
+            margin: 20px auto;
+            padding: 0 20px;
+            list-style-type: disc;
+        }
+        li {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Apocalypse Quiz Result</h1>
+    <div class="result">
+        <p>Your scare factor is: <strong>{{ scare_factor }}</strong></p>
+        <p>{{ scare_message }}</p>
+        <h3>Survival Tips:</h3>
+        <ul>
+            {% for tip in survival_tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
