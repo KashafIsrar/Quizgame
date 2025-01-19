@@ -17,13 +17,6 @@ def index():
     session.clear()  # Clear session at the start of a new quiz,  special object used to store user-specific data.
     return render_template('index.html') #generates an HTML page for the user.
 
-# Map personality types to corresponding images
-result_to_image = {
-    "You're just a chill guy.": "chillguy.jpg",
-    "Disappointed, but not surprised.": "failed.jpg",
-    "Aray bhai, paper was out of syllabus!": "main_character.jpg"
-}
-
 # Meme Quiz Route
 @app.route('/meme_quiz', methods=['GET', 'POST']) #user visits the page,  load the quiz question, post user submit ans
 def meme_quiz():  #data is stored in quiz_data and will be used to show questions
@@ -58,8 +51,8 @@ def meme_result():
     # Map personality types to their corresponding images
     result_to_image = {
         "You're just a chill guy.": "chillguy.jpg",
-        "Disappointed, but not surprised.": "failed.jpg",
-        "Aray bhai, paper was out of syllabus!": "main_character.jpg"
+        "Expects an easy day, failed.": "failed.jpg",
+        "Main character energy? Always ON.": "main_character.jpg"
     }
 
     # Determine personality type based on user answers

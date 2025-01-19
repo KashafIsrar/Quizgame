@@ -24,7 +24,8 @@
 
             <div class="navigation-buttons">
                 {% if session['current_question']|default(0) > 0 %}
-                    <a href="{{ url_for(quiz_type.lower() + '_quiz') }}?question={{ session['current_question'] - 1 }}" class="btn">Previous</a>
+                    <!-- Ensure previous question URL works -->
+                    <a href="{{ url_for(quiz_type.lower() + '_quiz', question=session['current_question'] - 1) }}" class="btn">Previous</a>
                 {% endif %}
                 <input type="submit" value="Next" class="btn">
             </div>
