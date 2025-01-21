@@ -1,42 +1,42 @@
-import json #to handle json files
-from flask import Flask, render_template, request, redirect, url_for, session #flask to create the web application, to render html templates, request to handle to form applications, url;to redirect user btw routes
-import os #to work with files path
+import json 
+from flask import Flask, render_template, request, redirect, url_for, session #flask to created web application, to render html templates, requested to handle to form applications, url;to redirect user btw routes
+import os #work with files path
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # Load quiz data from JSON files
 def load_json(file_name):
-    file_path = os.path.join(os.getcwd(), 'data', file_name) #returns the current working directory, subdirectory JSON files are expected to be stored.
-    with open(file_path, 'r') as f: #Opens the file located at file_path in read mode ('r').
+    file_path = os.path.join(os.getcwd(), 'data', file_name) #returns the current wrking directory, subdirectory JSON files are stored.
+    with open(file_path, 'r') as f: 
         return json.load(f) 
 
 # Route for the homepage
-@app.route('/') #This is a route decorator in Flask
+@app.route('/') 
 def index(): 
-    session.clear()  # Clear session at the start of a new quiz,  special object used to store user-specific data.
-    return render_template('index.html') #generates an HTML page for the user.
+    session.clear() 
+    return render_template('index.html') 
 
 # Meme Quiz Route
-@app.route('/meme_quiz', methods=['GET', 'POST']) #user visits the page,  load the quiz question, post user submit ans
+@app.route('/meme_quiz', methods=['GET', 'POST']) #user visit the page,  
 def meme_quiz():  #data is stored in quiz_data and will be used to show questions
     quiz_data = load_json('meme.json')
 
-    # Initialize session variables, Sets up the session for the quiz if it's the user's first time starting.
+    # Initialize session variables, Set kro session for the quiz agr the user's first time starting.
     if 'current_question' not in session:
-        session['current_question'] = 0 #Keeps track of which question the user is on (starts at 0)
-        session['answers'] = [] #list to store the user’s answers.
+        session['current_question'] = 0 #Keeps track konse  question user pe hai
+        session['answers'] = []
 
     # Check if quiz is completed
-    if session['current_question'] >= len(quiz_data): #The index of the current question.
-        return redirect(url_for('meme_result')) #The total number of questions in the quiz
+    if session['current_question'] >= len(quiz_data): 
+        return redirect(url_for('meme_result')) 
 
     # Handle POST request
-    if request.method == 'POST': #his block runs only when the user submits the form.
+    if request.method == 'POST':  
         answer = request.form.get('answer')  # Get selected answer, Retrieves the user’s selected answer from the submitted form.
         if answer:
             session['answers'].append(answer) #answer added to session['answers']
-            session['current_question'] += 1  #increased by 1 to move to the next question
+            session['current_question'] += 1  #increase kr rhe by 1 to move to the next question
         return redirect(url_for('meme_quiz')) 
 
     # Get current question
@@ -45,8 +45,8 @@ def meme_quiz():  #data is stored in quiz_data and will be used to show question
 
 @app.route('/meme_result')
 def meme_result():
-    user_answers = session.get('answers', []) #Retrieves the answers the user gave during the quiz
-    quiz_data = load_json('meme.json') #he quiz data is loaded calculate/display result based on user's answers.
+    user_answers = session.get('answers', []) #Retrieves the answers during the quiz user ne diye.
+    quiz_data = load_json('meme.json') # quiz data loaded calculate/display result on user's answers.
 
     # Map personality types to their corresponding images
     result_to_image = {
@@ -56,10 +56,10 @@ def meme_result():
     }
 
     # Determine personality type based on user answers
-    result_count = {} #Initializes an empty dictionary to store the count of each result.
-    for answer in user_answers: #Loops through each answer the user gave during the quiz.
-        for question in quiz_data: #Loops through each question
-            for option_text, result in question['options'].items(): #Loops through each option and its corresponding result
+    result_count = {} #Initializes a khali dictionary to store the count of each result.
+    for answer in user_answers: 
+        for question in quiz_data: 
+            for option_text, result in question['options'].items(): 
                 if answer == option_text: #Compares the user’s answer (answer) with the current option text 
                     result_count[result] = result_count.get(result, 0) + 1
 
@@ -79,8 +79,8 @@ def meme_result():
 
 
 # General Quiz Route
-@app.route('/general_quiz', methods=['GET', 'POST']) #users go to this URL, the general_quiz function will run.
-def general_quiz(): #Starts the function will handle requests to the /general_quiz route.
+@app.route('/general_quiz', methods=['GET', 'POST']) 
+def general_quiz(): 
     quiz_data = load_json('general.json') #Starts the function that will handle requests to the /general_quiz route.
 #initialize for the user
     if 'current_question' not in session: #Checks if current_question exists in the session
